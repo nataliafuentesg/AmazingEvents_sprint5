@@ -107,7 +107,7 @@
 
 
             <div class="d-flex gap-4 flex-wrap justify-content-center align-items-center h-100 p-4">
-                <template v-for="event in filtered">
+                <template v-if="filtered.length > 0" v-for="event in filtered">
                     <div class="card h-100" style="width: 17rem">
                         <img v-bind:src="event.image" class="card-img-top object-fit-cover" alt="img">
                         <div class="card-body">
@@ -119,6 +119,9 @@
                             </div>
                         </div>
                     </div>
+                </template>
+                <template v-else>
+                    <h3>Not Found</h3>
                 </template>
 
             </div>

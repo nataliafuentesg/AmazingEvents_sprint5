@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home - Amazing Events</title>
-        <link rel="stylesheet" href="./assets/style/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <link rel="shortcut icon" href="./assets/Images/favicon.png" type="image/x-icon">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Amazing Events</title>
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./assets/Images/favicon.png" type="image/x-icon">
+</head>
+
 <body>
     <div id="app">
         <header>
@@ -32,7 +34,8 @@
                                     href="./assets/pages/upcomingEvents.html">Upcoming Events</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="./assets/pages/pastEvents.html">Past
+                                <a class="nav-link active" aria-current="page"
+                                    href="./assets/pages/pastEvents.html">Past
                                     Events</a>
                             </li>
                             <li class="nav-item">
@@ -40,10 +43,11 @@
                                     href="./assets/pages/contact.html">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="./assets/pages/stats.html">Stats</a>
+                                <a class="nav-link active" aria-current="page"
+                                    href="./assets/pages/stats.html">Stats</a>
                             </li>
-                        </ul>   
-    
+                        </ul>
+
                     </div>
                 </div>
             </nav>
@@ -55,7 +59,7 @@
                             <div class="d-flex justify-content-center">
                                 <img src="./assets/Images/optional_banner_5.jpg" class="img-fluid" alt="Sushi">
                             </div>
-    
+
                         </div>
                         <div class="carousel-item">
                             <img src="./assets/Images/optional_banner_2.jpg" class="img-fluid" alt="Cinema">
@@ -74,7 +78,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-    
+
                     <div class="carousel-caption">
                         <h1>HOME</h1>
                     </div>
@@ -83,7 +87,41 @@
 
         </header>
         <main class="flex-grow-1">
-            <div class="filters">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="p-4">
+                    <div class="filters">
+                        <div class="checkBoxes">
+                            <template v-for="category in categories">
+                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    <input type="checkbox" class="btn-check" v-bind:id="category"
+                                        v-bind:value="category" v-on:change="filter" v-model="categoryChecked">
+                                    <label class="btn btn-outline-primary" v-bind:for="category">{{category}}</label>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div>
+                            <div class="container-fluid">
+                                <form class="d-flex" role="search">
+                                    <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                                        v-on:input="filter" v-model="searchedInput">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><img src="./assets/Images/filterIcon.png" alt="Filters" width="40"
+                        height="40"><span class="filterText">Filters</span> 
+                    </button>
+                </div>
+            </nav>
+
+            <!-- <div class="filters">
                 <div class="checkBoxes">
                     <template v-for = "category in categories">
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -100,13 +138,13 @@
                         </form>
                       </div>
                 </div>
-            </div>
-            
+            </div> -->
+
 
             <div class="d-flex gap-4 flex-wrap justify-content-center align-items-center h-100 p-4">
-                <template v-for = "event in filtered" >
+                <template v-if = "filtered.length > 0" v-for="event in filtered">
                     <div class="card h-100" style="width: 17rem">
-                        <img v-bind:src= "event.image" class="card-img-top object-fit-cover" alt="img">
+                        <img v-bind:src="event.image" class="card-img-top object-fit-cover" alt="img">
                         <div class="card-body">
                             <h5 class="card-title">{{event.name}}</h5>
                             <p class="card-text">{{event.description}}</p>
@@ -117,7 +155,10 @@
                         </div>
                     </div>
                 </template>
-                
+                <template v-else>
+                    <h3>Not Found</h3>
+                </template>
+
             </div>
         </main>
     </div>
@@ -133,12 +174,15 @@
             <p>COHORT</p>
         </div>
     </footer>
-    
-    
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./main.js"></script>
 </body>
+
 </html>
