@@ -88,61 +88,41 @@
         </header>
         <main class="flex-grow-1">
             <div class="collapse" id="navbarToggleExternalContent">
-                <div class="p-4">
-                    <div class="filters">
-                        <div class="checkBoxes">
-                            <template v-for="category in categories">
-                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                    <input type="checkbox" class="btn-check" v-bind:id="category"
-                                        v-bind:value="category" v-on:change="filter" v-model="categoryChecked">
-                                    <label class="btn btn-outline-primary" v-bind:for="category">{{category}}</label>
-                                </div>
-                            </template>
-                        </div>
 
-                        <div>
-                            <div class="container-fluid">
-                                <form class="d-flex" role="search">
-                                    <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-                                        v-on:input="filter" v-model="searchedInput">
-                                </form>
+                <div class="filters">
+                    <div class="checkBoxes">
+                        <template v-for="category in categories">
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="checkbox" class="btn-check" v-bind:id="category" v-bind:value="category"
+                                    v-on:change="filter" v-model="categoryChecked">
+                                <label class="btn btn-outline-primary" v-bind:for="category">{{category}}</label>
                             </div>
+                        </template>
+                    </div>
+
+                    <div>
+                        <div class="container-fluid">
+                            <form class="d-flex" role="search">
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                                    v-on:input="filter" v-model="searchedInput">
+                            </form>
                         </div>
                     </div>
                 </div>
+
             </div>
             <nav class="navbar">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                        aria-expanded="false" aria-label="Toggle navigation"><img src="./assets/Images/filterIcon.png" alt="Filters" width="40"
-                        height="40"><span class="filterText">Filters</span> 
+                        aria-expanded="false" aria-label="Toggle navigation"><img src="./assets/Images/filterIcon.png"
+                            alt="Filters" width="40" height="40"><span class="filterText">Filters</span>
                     </button>
                 </div>
             </nav>
 
-            <!-- <div class="filters">
-                <div class="checkBoxes">
-                    <template v-for = "category in categories">
-                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                            <input type="checkbox" class="btn-check" v-bind:id="category" v-bind:value="category" v-on:change="filter" v-model="categoryChecked">
-                            <label class="btn btn-outline-primary" v-bind:for="category">{{category}}</label>
-                        </div>
-                    </template> 
-                </div>
-                           
-                <div>
-                    <div class="container-fluid">
-                        <form class="d-flex" role="search">
-                          <input type="text" class="form-control" placeholder="Search" aria-label="Search" v-on:input="filter" v-model="searchedInput">
-                        </form>
-                      </div>
-                </div>
-            </div> -->
-
-
             <div class="d-flex gap-4 flex-wrap justify-content-center align-items-center h-100 p-4">
-                <template v-if = "filtered.length > 0" v-for="event in filtered">
+                <template v-if="filtered.length > 0" v-for="event in filtered">
                     <div class="card h-100" style="width: 17rem">
                         <img v-bind:src="event.image" class="card-img-top object-fit-cover" alt="img">
                         <div class="card-body">

@@ -4,7 +4,7 @@ const options = {
     data(){
         return {
             detail : [],          
-            
+            currentDate : {},
         }
     },
     created(){
@@ -18,7 +18,7 @@ const options = {
                 console.log(idDetail)   
                 let sku = idDetail.get('id');   
                 this.detail = detailEvent.find( event =>  event._id == sku);
-                console.log(this.detail)
+                this.currentDate = data.currentDate
             })
             .catch( err => console.log( err ) )
     },

@@ -73,8 +73,12 @@
                                         <p class="justify-content-left">{{detail.place}}</p>
                                         <h6 class="justify-content-left">Capacity</h6>
                                         <p class="justify-content-left">{{detail.capacity}}</p>
-                                        <h6 class="justify-content-left">Estimate</h6>
-                                        <p class="justify-content-left">{{detail.estimate}}</p>
+                                        <h6 class="justify-content-left">
+                                            <span v-if="detail.date > currentDate">Estimate</span>
+                                            <span v-else>Assistance</span></h6>
+                                        <p class="justify-content-left">
+                                            <span v-if="detail.date > currentDate">{{detail.estimate}}</span>
+                                            <span v-else>{{detail.assistance}}</span></h6></p>
                                         <h6 class="justify-content-left">Price</h6>
                                         <p class="justify-content-left">${{detail.price}}</p>
 
